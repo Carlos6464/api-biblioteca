@@ -17,7 +17,17 @@ export class PublisherService implements IPublisherService {
     }
 
     async findAll(): Promise<PublishResponseDTO[]> {
-       return  await prisma.publisher.findMany();    
+       const publishers = await prisma.publisher.findMany();  
+       
+       if (!publishers) {
+            throw new Error(`Publishers not found`);
+        }
+
+        return publishers.map((publisher) => ({
+            id: publisher.id,
+            name: publisher.name
+        }));
+       
     }
 
     async findOne(id: number): Promise<PublishResponseDTO> {

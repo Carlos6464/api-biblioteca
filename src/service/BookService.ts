@@ -23,7 +23,19 @@ export class BookService implements IBookService {
     }
 
     async findAll(): Promise<BookResponseDTO[]> {
-        return await prisma.book.findMany();
+        const books = await prisma.book.findMany();
+
+        if (!books) {
+            throw new Error(`Books not found`);
+        }
+        
+        return books.map((book) => ({
+            id: book.id,
+            title: book.title,
+            author: book.author,
+            isbn: book.isbn,
+            publisherId: book.publisherId
+        }));
     }
 
     async findOne(id: number): Promise<BookResponseDTO> {
