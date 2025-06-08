@@ -5,10 +5,10 @@ import { PublisherService } from "../service/PublisheService";
 const router = Router();
 const controller = new PublisherController(new PublisherService());
 
-router.post("/publishers", controller.create);
-router.get("/publishers", controller.findAll);
-router.get("/publishers/:id", controller.findOne);
-router.put("/publishers/:id", controller.update);
-router.delete("/publishers/:id", controller.delete);
+router.post("/", controller.create);
+router.get("/", controller.findAll);
+router.get("/:id", controller.findOne);
+router.put("/:id", controller.update);
+router.delete("/:id", controller.delete);
 
 export default router;
