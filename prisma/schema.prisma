@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -21,7 +20,7 @@ model Publisher {
    updatedAt DateTime @updatedAt
    deleted Boolean @default(false)
 
-   boosks Book[]
+   books Book[]
 }
 
 model Book {
